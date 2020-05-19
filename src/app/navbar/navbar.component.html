@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
- <a class="navbar-brand" href="#">Navbar</a>
+ <a class="navbar-brand" routerLink='/'>Sh</a>
  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
    <span class="navbar-toggler-icon"></span>
  </button>
@@ -14,18 +14,15 @@
      </li>
      <li class="nav-item dropdown">
        <div ngbDropdown class="d-inline-block">
-         <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
+         <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Username</button>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button ngbDropdownItem>Action - 1</button>
-            <button ngbDropdownItem>Another Action</button>
-            <button ngbDropdownItem>Something else is here</button>
+            <button ngbDropdownItem routerLink="/my/orders">My orders</button>
+            <button ngbDropdownItem routerLink="/admin/products">Manage products</button>
+            <button ngbDropdownItem routerLink="/admin/orders">Manage orders</button>
+            <button ngbDropdownItem>Log out</button>
           </div>
       </div>
      </li>
    </ul>
-   <form class="form-inline my-2 my-lg-0">
-     <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-     <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-   </form>
  </div>
 </nav>
