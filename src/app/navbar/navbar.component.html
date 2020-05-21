@@ -12,10 +12,10 @@
      <li class="nav-item">
        <a class="nav-link" routerLink="/shopping-cart">Shooping cart</a>
      </li>
-     <li class="nav-item" *ngIf="!user">
+     <li class="nav-item" *ngIf="!(user$ | async)">
        <a class="nav-link" routerLink="/login">Login</a>
      </li>
-     <li class="nav-item dropdown" *ngIf="user">
+     <li class="nav-item dropdown" *ngIf="user$ | async as user">
        <div ngbDropdown class="d-inline-block">
          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{user.displayName}}</button>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
