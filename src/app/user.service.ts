@@ -15,4 +15,7 @@ export class UserService {
       email: user.email
     });
   }
+  get(uid: string) {
+    return this.db.object('/users/'+uid);
+  }
 }
