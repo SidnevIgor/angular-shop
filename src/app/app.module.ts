@@ -45,7 +45,7 @@ import { AuthGuardService } from './auth-guard.service';
       {path:'',component: HomeComponent},
       {path:'products',component: ProductsComponent},
       {path:'shopping-cart',component: ShoppingCartComponent},
-      {path:'check-out',component:CheckOutComponent},
+      {path:'check-out',component:CheckOutComponent, canActivate: [AuthGuardService]},
       {path:'my/orders',component:MyOrdersComponent},
       {path:'order-success',component:OrderSuccessComponent},
       {path:'login',component:LoginComponent},
