@@ -13,13 +13,12 @@ export class ProductFormComponent implements OnInit {
   constructor(categoryServ: CategoryService, private productServ: ProductService) {
     this.categories$ = categoryServ.getListOfCategories();
   }
-
   ngOnInit(): void {
   }
   save(product) {
     this.productServ.create(product);
   }
   isNumber(num) {
-    console.log(num);
+    return num.value>0?true:false;
   }
 }

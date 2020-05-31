@@ -17,6 +17,9 @@
     <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
       Price is required
     </div>
+    <div class="alert alert-danger" *ngIf="!isNumber(price) && price.touched">
+      Price value should be > 0
+    </div>
   </div>
   <div class="form-group">
     <label for="category">Category</label>
