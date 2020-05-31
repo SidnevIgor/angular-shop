@@ -19,4 +19,7 @@ export class ProductFormComponent implements OnInit {
   save(product) {
     this.productServ.create(product);
   }
+  isNumber(num) {
+    console.log(num);
+  }
 }
