@@ -17,7 +17,7 @@
     <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
       Price is required
     </div>
-    <div class="alert alert-danger" *ngIf="!isNumber(price) && price.touched">
+    <div class="alert alert-danger" *ngIf="!isNumber(price) && price.touched && price.value">
       Price value should be > 0
     </div>
   </div>
@@ -36,6 +36,9 @@
     <input #imageUrl="ngModel" ngModel name="imageUrl" type="text" class="form-control" id="imageUrl" required>
     <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
       Image URL is required
+    </div>
+    <div class="alert alert-danger" *ngIf="imageUrl.touched && !isUrl(imageUrl) && imageUrl.value">
+      Invalid Image URL
     </div>
   </div>
   <button class="btn btn-primary">Save</button>
