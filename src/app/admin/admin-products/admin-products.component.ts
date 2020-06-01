@@ -9,23 +9,25 @@ import { ProductService } from '../../product.service';
   styleUrls: ['./admin-products.component.css']
 })
 export class AdminProductsComponent implements OnInit {
-  products;
-  productKeys;
+  products: any[];
+  productKeys: any[];
 
   constructor(private productServ: ProductService) {
 
     this.productServ.getAll().valueChanges().subscribe(arr => {
       this.products = arr;
-    });
-    this.productServ.getAll().snapshotChanges().pipe(
-      map(actions => {
-        actions.map(a => { key: a.payload.key})
-        this.productKeys = actions;
+      this.productServ.getAll().snapshotChanges().pipe(
+        map(actions => {
+          actions.map(a => { key: a.payload.key})
+          this.productKeys = actions;
+        })
+      ).subscribe(item => {
+        for(let i=0; i< this.products.length; i++) {
+          this.products[i].key = this.productKeys[i].key;
+        }
+        console.log(this.products);
       })
-    ).subscribe(item => {
-      console.log(this.productKeys);
-      console.log(this.products);
-    })
+    });
   }
 
   ngOnInit(): void {
