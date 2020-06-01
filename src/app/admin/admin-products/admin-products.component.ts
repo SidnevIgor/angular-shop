@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { Observable, forkJoin } from 'rxjs';
 import { ProductService } from '../../product.service';
 
 @Component({
@@ -10,21 +11,26 @@ import { ProductService } from '../../product.service';
 export class AdminProductsComponent implements OnInit {
   products;
   productKeys;
+
   constructor(private productServ: ProductService) {
+
     this.productServ.getAll().valueChanges().subscribe(arr => {
       this.products = arr;
     });
     this.productServ.getAll().snapshotChanges().pipe(
       map(actions => {
-        console.log(actions);
         actions.map(a => { key: a.payload.key})
+        this.productKeys = actions;
       })
     ).subscribe(item => {
-      console.log(item);
+      console.log(this.productKeys);
+      console.log(this.products);
     })
   }
 
   ngOnInit(): void {
+    console.log(this.products);
+    console.log(this.productKeys);
   }
 
 }
