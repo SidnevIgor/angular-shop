@@ -25,14 +25,11 @@ export class AdminProductsComponent implements OnInit {
         for(let i=0; i< this.products.length; i++) {
           this.products[i].key = this.productKeys[i].key;
         }
-        console.log(this.products);
       })
     });
   }
 
   ngOnInit(): void {
-    console.log(this.products);
-    console.log(this.productKeys);
   }
 
 }
