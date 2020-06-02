@@ -17,13 +17,13 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     category: '',
     imageUrl: ''
   };
+  id;
 
   constructor(private router:Router, private route: ActivatedRoute, private categoryServ: CategoryService, private productServ: ProductService) {
     this.categories$ = categoryServ.getListOfCategories();
-    let id = this.route.snapshot.paramMap.get('id');
-    //console.log(id);
-    if(id) {
-      this.productServ.get(id).subscribe(p => {
+    this.id = this.route.snapshot.paramMap.get('id');
+    if(this.id) {
+      this.productServ.get(this.id).subscribe(p => {
         console.log(p);
         this.product.title = p[3].toString();
         this.product.price = p[2].toString();
@@ -39,7 +39,12 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
   }
   save(product) {
-    this.productServ.create(product);
+    if(this.id) {
+      this.productServ.update(this.id,product);
+    }
+    else {
+      this.productServ.create(product);
+    }
     this.router.navigate(['/admin/products']);
   }
   isNumber(num) {
