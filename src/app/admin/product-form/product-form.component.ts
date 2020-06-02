@@ -36,7 +36,6 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
   ngOnDestroy() {
-
   }
   save(product) {
     if(this.id) {
@@ -53,5 +52,14 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   isUrl(url) {
     let re = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/g;
     return re.test(url.value)?true:false;
+  }
+  delete() {
+    if(!confirm('Are you sure you want to delete the product')) {
+      return;
+    }
+    else {
+      this.productServ.delete(this.id);
+      this.router.navigate(['/admin/products']);
+    }
   }
 }
