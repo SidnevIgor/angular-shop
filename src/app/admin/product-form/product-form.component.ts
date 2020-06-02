@@ -11,13 +11,26 @@ import { take } from 'rxjs/operators';
 })
 export class ProductFormComponent implements OnInit, OnDestroy {
   categories$;
-  product = {};
+  product = {
+    title: '',
+    price: '',
+    category: '',
+    imageUrl: ''
+  };
 
   constructor(private router:Router, private route: ActivatedRoute, private categoryServ: CategoryService, private productServ: ProductService) {
     this.categories$ = categoryServ.getListOfCategories();
     let id = this.route.snapshot.paramMap.get('id');
+    //console.log(id);
     if(id) {
-      this.productServ.get(id).pipe(take(1)).subscribe(p => {this.product = p});
+      this.productServ.get(id).subscribe(p => {
+        console.log(p);
+        this.product.title = p[3].toString();
+        this.product.price = p[2].toString();
+        this.product.category = p[0].toString();
+        this.product.imageUrl = p[1].toString();
+        console.log(this.product);
+      });
     }
   }
   ngOnInit(): void {
