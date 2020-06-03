@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable, forkJoin } from 'rxjs';
 import { ProductService } from '../../product.service';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-admin-products',
@@ -9,14 +10,14 @@ import { ProductService } from '../../product.service';
   styleUrls: ['./admin-products.component.css']
 })
 export class AdminProductsComponent implements OnInit {
-  products: any[];
+  products: Product[];
   productKeys: any[];
-  filteredProducts: any[];
+  filteredProducts: Product[];
 
   constructor(private productServ: ProductService) {
 
     this.productServ.getAll().valueChanges().subscribe(arr => {
-      this.filteredProducts = this.products = arr;
+      this.filteredProducts = this.products = <Product[]>arr;
       this.productServ.getAll().snapshotChanges().pipe(
         map(actions => {
           actions.map(a => { key: a.payload.key})
