@@ -11,11 +11,12 @@ import { ProductService } from '../../product.service';
 export class AdminProductsComponent implements OnInit {
   products: any[];
   productKeys: any[];
+  filteredProducts: any[];
 
   constructor(private productServ: ProductService) {
 
     this.productServ.getAll().valueChanges().subscribe(arr => {
-      this.products = arr;
+      this.filteredProducts = this.products = arr;
       this.productServ.getAll().snapshotChanges().pipe(
         map(actions => {
           actions.map(a => { key: a.payload.key})
@@ -24,6 +25,7 @@ export class AdminProductsComponent implements OnInit {
       ).subscribe(item => {
         for(let i=0; i< this.products.length; i++) {
           this.products[i].key = this.productKeys[i].key;
+          this.filteredProducts[i].key = this.productKeys[i].key;
         }
       })
     });
@@ -31,5 +33,8 @@ export class AdminProductsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  filter(query: string) {
+    this.filteredProducts = (query)? this.products.filter(p => p.title.toLowerCase().includes(query.toLowerCase())) :
+    this.products;
+  }
 }
