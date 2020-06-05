@@ -2,12 +2,12 @@
   <div class="col-3">
     <div class="list-group">
       <a class="list-group-item list-group-item-action" routerLink="/" [queryParams]="{category: c.name}"
-      *ngFor="let c of categories$ | async">{{c.name}}</a>
+      *ngFor="let c of categories$ | async" [class.active]="category===c.name">{{c.name}}</a>
     </div>
   </div>
   <div class="col">
     <div class="row">
-      <ng-container *ngFor="let p of products$ | async; let i = index">
+      <ng-container *ngFor="let p of filteredProducts; let i = index">
         <div class="col">
           <div class="card" style="width: 15rem;">
             <img class="card-img-top" src="{{p.imageUrl}}" alt="Card image cap">
