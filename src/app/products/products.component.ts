@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../product.service';
-import { CategoryService } from '../category.service';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../models/product';
 
@@ -12,9 +11,8 @@ import { Product } from '../models/product';
 export class ProductsComponent {
   products: Product[]=[];
   filteredProducts: Product[]=[];
-  categories$;
   category: string;
-  constructor(private route: ActivatedRoute, private productServ:ProductService, private categoryServ: CategoryService) {
+  constructor(private route: ActivatedRoute, private productServ:ProductService) {
     this.productServ.getAll().valueChanges().subscribe(prods => {
       this.products = <Product[]>prods;
       this.route.queryParamMap.subscribe(params => {
@@ -25,6 +23,5 @@ export class ProductsComponent {
         this.products;
       });
     })
-    this.categories$ = this.categoryServ.getListOfCategories();
   }
 }
