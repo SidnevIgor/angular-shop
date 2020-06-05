@@ -17,15 +17,14 @@ export class ProductsComponent {
   constructor(private route: ActivatedRoute, private productServ:ProductService, private categoryServ: CategoryService) {
     this.productServ.getAll().valueChanges().subscribe(prods => {
       this.products = <Product[]>prods;
+      this.route.queryParamMap.subscribe(params => {
+        this.category = params.get('category');
+
+        this.filteredProducts = (this.category)?
+        this.products.filter(p => p.category == this.category) :
+        this.products;
+      });
     })
     this.categories$ = this.categoryServ.getListOfCategories();
-    this.route.queryParamMap.subscribe(params => {
-      this.category = params.get('category');
-
-      this.filteredProducts = (this.category)?
-      this.products.filter(p => p.category == this.category) :
-      this.products;
-    });
   }
-
 }
