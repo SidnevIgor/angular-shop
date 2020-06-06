@@ -13,12 +13,7 @@ export class ProductCardComponent {
   constructor(private shoppingCartServ: ShoppingCartService) {
   }
   addToCart(product: Product) {
-    let cartId = localStorage.getItem('cartId');
-    if(!cartId) {
-      this.shoppingCartServ.create().then(result => {
-        localStorage.setItem('cartId',result.key);
-      })
-    }
+    
   }
 
 }
