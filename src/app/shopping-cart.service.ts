@@ -27,7 +27,6 @@ export class ShoppingCartService {
   }
   async addToCart(product: Product) {
     let cartId = await this.getOrCreateCartId();
-    console.log(product.key);
     let item$ = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key);
     item$.valueChanges().pipe(take(1)).subscribe(item => {
       if(item) {
