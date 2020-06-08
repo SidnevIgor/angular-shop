@@ -16,6 +16,9 @@ export class ProductCardComponent {
   addToCart(product: Product) {
     this.shoppingCartServ.addToCart(product);
   }
+  removeFromCart(product: Product) {
+    this.shoppingCartServ.removeFromCart(product);
+  }
   getQuantity() {
     if(!this.shoppingCart) return 0;
     else {
