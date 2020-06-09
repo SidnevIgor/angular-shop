@@ -46,7 +46,7 @@ export class ShoppingCartService {
     let item$ = this.getItem(cartId, product.key);
     item$.valueChanges().pipe(take(1)).subscribe(item => {
       if(item) {
-        item$.update({ quantity: item.quantity -1 });
+        item$.update({ quantity: item.quantity - 1 });
       }
       else {
         item$.set({product: product, quantity: 1});
