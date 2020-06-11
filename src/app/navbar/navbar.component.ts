@@ -24,10 +24,10 @@ export class NavbarComponent implements OnInit{
     let items: ShoppingCartItem[];
     cart$.valueChanges().subscribe(cart => {
       items = (<ShoppingCart>cart).items;
-      console.log(items);
-      this.numberOfItems = items.reduce(function(acc,val) {
-        return acc + val.quantity;
-      },0);
+      this.numberOfItems = 0;
+      for(let productId in items) {
+        this.numberOfItems+=items[productId].quantity;
+      }
       console.log(this.numberOfItems);
     })
   }

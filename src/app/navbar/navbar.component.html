@@ -6,9 +6,12 @@
 
  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
    <ul class="navbar-nav mr-auto">
-    
+
      <li class="nav-item">
-       <a class="nav-link" routerLink="/shopping-cart">Shooping cart</a>
+       <a class="nav-link" routerLink="/shopping-cart">
+         Shooping cart
+         <span class="badge badge-warning badge-pill">{{numberOfItems}}</span>
+       </a>
      </li>
      <li class="nav-item" *ngIf="!(auth.user$ | async)">
        <a class="nav-link" routerLink="/login">Login</a>
