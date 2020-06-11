@@ -17,35 +17,15 @@ export class ProductsComponent implements OnInit {
   category: string;
   cart: any;
   subscription: any;
-  elemIsSet = true;
+  
   constructor(private route: ActivatedRoute, private productServ:ProductService, private shoppingCartServ: ShoppingCartService) {
-      this.route.queryParamMap.subscribe(params => {
+    this.route.queryParamMap.subscribe(params => {
+      this.addKeys().add(() => {
         this.category = params.get('category');
-
-        this.productServ.getAll().valueChanges().subscribe(prods => {
-          this.products = this.elemIsSet?<Product[]>prods:this.products;
-          console.log('Products array',this.products);
-          this.productServ.getAll().snapshotChanges().pipe(
-            map(actions => {
-              actions.map(a => { key: a.payload.key})
-              this.productKeys = actions;
-              console.log('Product keys',this.productKeys);
-            })
-          ).subscribe(item => {
-            this.filteredProducts = (this.category)?
-            this.products.filter(p => p.category == this.category) :
-            this.products;
-            console.log('Filtered products',this.filteredProducts);
-            if(this.elemIsSet){
-              for(let i=0; i< this.products.length; i++) {
-                this.products[i].key = this.productKeys[i].key;
-                this.filteredProducts[i].key = this.productKeys[i].key;
-              }
-              this.elemIsSet = false;
-            }
-
-          })
-      });
+        if(this.category) {
+          this.filteredProducts = this.products.filter(val => val.category === this.category);
+        }
+      })
     })
   }
   async ngOnInit() {
@@ -55,5 +35,24 @@ export class ProductsComponent implements OnInit {
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+  addKeys() {
+    return  this.productServ.getAll().valueChanges().subscribe(prods => {
+        this.products = <Product[]>prods;
+        this.productServ.getAll().snapshotChanges().pipe(
+          map(actions => {
+            actions.map(a => { key: a.payload.key})
+            this.productKeys = actions;
+          })
+        ).subscribe(item => {
+          this.filteredProducts = this.products;
+          for(let i=0; i< this.products.length; i++) {
+            this.products[i].key = this.productKeys[i].key;
+            this.filteredProducts[i].key = this.productKeys[i].key;
+          }
+          console.log(this.products);
+          console.log(this.filteredProducts);
+        })
+    });
   }
 }
