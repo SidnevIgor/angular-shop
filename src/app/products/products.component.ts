@@ -33,8 +33,6 @@ export class ProductsComponent implements OnInit {
           this.products[i].key = this.productKeys[i].key;
           this.filteredProducts[i].key = this.productKeys[i].key;
         }
-        console.log(this.products);
-        console.log(this.filteredProducts);
         this.category = params.get('category');
           if(this.category) {
             this.filteredProducts = this.products.filter(val => val.category === this.category);
