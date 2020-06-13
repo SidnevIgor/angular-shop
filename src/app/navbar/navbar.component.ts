@@ -28,7 +28,6 @@ export class NavbarComponent implements OnInit{
       for(let productId in items) {
         this.numberOfItems+=items[productId].quantity;
       }
-      console.log(this.numberOfItems);
     })
   }
   logout() {

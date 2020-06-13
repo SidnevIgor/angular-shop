@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { Product } from './models/product';
 import { ShoppingCartItem } from './models/shopping-cart-item';
+import { ShoppingCart } from './models/shopping-cart';
 import { take } from 'rxjs/operators';
 
 @Injectable({
