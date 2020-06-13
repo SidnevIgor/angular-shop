@@ -3,4 +3,20 @@
   <p>
     You have {{numberOfItems}} items in your cart
   </p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cart$.items">
+        <td>{{item.product[-KrqgOLs07ZkbapP4EGi]}}</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 </ng-container>
