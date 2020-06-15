@@ -12,10 +12,13 @@ export class ShoppingCartComponent implements OnInit {
 
   cart$:any;
   numberOfItems: number;
+  subscription: any;
   constructor(private shoppingCartServ: ShoppingCartService) { }
 
   async ngOnInit() {
-    this.cart$ = await this.shoppingCartServ.getCart();
+    this.subscription = (await (await this.shoppingCartServ.getCart()).valueChanges()).subscribe(cart => {
+      this.cart$ = cart;
+    });
     let items: ShoppingCartItem[];
     this.cart$.valueChanges().subscribe(cart => {
       items = (<ShoppingCart>cart).items;
@@ -25,5 +28,10 @@ export class ShoppingCartComponent implements OnInit {
       }
     })
   }
-
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+  getProductIds() {
+    return Object.keys(this.cart$.items);
+  }
 }
