@@ -13,16 +13,18 @@
     </thead>
     <tbody>
       <tr *ngFor="let productId of productIds">
+        <ng-container *ngIf="cart$.items[productId].quantity > 0">
         <td>{{ cart$.items[productId].product.title }}</td>
         <td>{{ cart$.items[productId].quantity }}</td>
         <td>{{ cart$.items[productId].product.price * cart$.items[productId].quantity | currency:'USD':true}}</td>
+        </ng-container>
       </tr>
     </tbody>
     <tfoot>
       <tr>
-        <td></td>
-        <td></td>
-        <td>{{ totalPrice | currency:'USD':true}}</td>
+        <th></th>
+        <th></th>
+        <th>{{ totalPrice | currency:'USD':true}}</th>
       </tr>
     </tfoot>
   </table>
