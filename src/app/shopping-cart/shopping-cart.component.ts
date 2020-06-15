@@ -14,6 +14,7 @@ export class ShoppingCartComponent implements OnInit {
   numberOfItems: number;
   subscription: any;
   productIds: any[];
+  totalPrice: number;
   constructor(private shoppingCartServ: ShoppingCartService) { }
 
   async ngOnInit() {
@@ -23,8 +24,10 @@ export class ShoppingCartComponent implements OnInit {
       items = (<ShoppingCart>cart).items;
       console.log(items);
       this.numberOfItems = 0;
+      this.totalPrice = 0;
       for(let productId in items) {
         this.numberOfItems+=items[productId].quantity;
+        this.totalPrice+=items[productId].product.price;
       }
       this.getProductIds();
     });
@@ -33,7 +36,6 @@ export class ShoppingCartComponent implements OnInit {
     this.subscription.unsubscribe();
   }
   getProductIds() {
-    console.log(Object.keys(this.cart$.items));
     this.productIds = Object.keys(this.cart$.items);
   }
 }
