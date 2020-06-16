@@ -27,7 +27,9 @@ export class ShoppingCartComponent implements OnInit {
       this.totalPrice = 0;
       for(let productId in items) {
         this.numberOfItems+=items[productId].quantity;
-        this.totalPrice+=items[productId].product.price;
+        if(items[productId].quantity>0){
+          this.totalPrice+=items[productId].product.price * items[productId].quantity;
+        }
       }
       this.getProductIds();
     });
