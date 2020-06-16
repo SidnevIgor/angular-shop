@@ -15,7 +15,7 @@
       <tr *ngFor="let productId of productIds">
         <ng-container *ngIf="cart$.items[productId].quantity > 0">
         <td>{{ cart$.items[productId].product.title }}</td>
-        <td>{{ cart$.items[productId].quantity }}</td>
+        <td><product-quantity [product]="cart$.items[productId].product" [shoppingCart]="cart$"></product-quantity></td>
         <td>{{ cart$.items[productId].product.price * cart$.items[productId].quantity | currency:'USD':true}}</td>
         </ng-container>
       </tr>
