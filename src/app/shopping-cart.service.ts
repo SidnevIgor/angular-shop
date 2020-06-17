@@ -16,7 +16,7 @@ export class ShoppingCartService {
       dateCreated: new Date().getTime()
     });
   }
-  async getCart() {
+  async getCart(): Promise<AngularFireObject<ShoppingCart>> { //added specific return type
     let cartId = await this.getOrCreateCartId();
     return this.db.object('/shopping-carts/' + cartId);
   }
@@ -54,5 +54,21 @@ export class ShoppingCartService {
         item$.set({product: product, quantity: 1});
       }
     });
+  }
+  async clearCart() {
+    let cartId = await this.getOrCreateCartId();
+    (await (await this.getCart()).valueChanges()).subscribe(val => {
+      let cart = val;
+      let items = cart.items;
+      let productIds = Object.keys(items);
+      for(let productId of productIds){
+        let item$ = this.getItem(cartId, productId);
+        item$.valueChanges().pipe(take(1)).subscribe(item => {
+          if(item) {
+            item$.update({ quantity: 0 });
+          }
+        });
+      }
+    })
   }
 }

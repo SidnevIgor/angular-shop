@@ -10,7 +10,7 @@ import { ShoppingCartItem } from '../models/shopping-cart-item';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  cart$:any;
+  cart$:ShoppingCart;
   numberOfItems: number;
   subscription: any;
   productIds: any[];
@@ -39,5 +39,8 @@ export class ShoppingCartComponent implements OnInit {
   }
   getProductIds() {
     this.productIds = Object.keys(this.cart$.items);
+  }
+  clearCart() {
+    this.shoppingCartServ.clearCart();
   }
 }
