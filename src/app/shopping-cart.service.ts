@@ -57,7 +57,7 @@ export class ShoppingCartService {
   }
   async clearCart() {
     let cartId = await this.getOrCreateCartId();
-    (await (await this.getCart()).valueChanges()).subscribe(val => {
+    return (await (await this.getCart()).valueChanges()).subscribe(val => {
       let cart = val;
       let items = cart.items;
       let productIds = Object.keys(items);

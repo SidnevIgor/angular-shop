@@ -13,6 +13,7 @@ export class ShoppingCartComponent implements OnInit {
   cart$:ShoppingCart;
   numberOfItems: number;
   subscription: any;
+  clearSubscription: any;
   productIds: any[];
   totalPrice: number;
   constructor(private shoppingCartServ: ShoppingCartService) { }
@@ -36,11 +37,14 @@ export class ShoppingCartComponent implements OnInit {
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.clearSubscription.unsubscribe();
   }
   getProductIds() {
     this.productIds = Object.keys(this.cart$.items);
   }
   clearCart() {
-    this.shoppingCartServ.clearCart();
+    this.shoppingCartServ.clearCart().then(subs => {
+      this.clearSubscription = subs;
+    })
   }
 }
