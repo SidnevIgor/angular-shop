@@ -37,7 +37,9 @@ export class ShoppingCartComponent implements OnInit {
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
-    this.clearSubscription.unsubscribe();
+    if(this.clearSubscription){
+      this.clearSubscription.unsubscribe();
+    }
   }
   getProductIds() {
     this.productIds = Object.keys(this.cart$.items);

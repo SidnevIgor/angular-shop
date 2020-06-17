@@ -6,6 +6,7 @@
   <table class="table">
     <thead>
       <tr>
+        <th></th>
         <th>Product</th>
         <th style="width: 230px" class="text-center">Quantity</th>
         <th style="width: 200px" class="text-right">Price</th>
@@ -14,6 +15,7 @@
     <tbody>
       <tr *ngFor="let productId of productIds">
         <ng-container *ngIf="cart$.items[productId].quantity > 0">
+        <td><div [style.backgroundImage]="'url(' + cart$.items[productId].product.imageUrl+')'" class="thumbnail"></div></td>  
         <td>{{ cart$.items[productId].product.title }}</td>
         <td><product-quantity [product]="cart$.items[productId].product" [shoppingCart]="cart$"></product-quantity></td>
         <td class="text-right">{{ cart$.items[productId].product.price * cart$.items[productId].quantity | currency:'USD':true}}</td>
@@ -22,6 +24,7 @@
     </tbody>
     <tfoot>
       <tr>
+        <th></th>
         <th></th>
         <th></th>
         <th class="text-right">{{ totalPrice | currency:'USD':true}}</th>
