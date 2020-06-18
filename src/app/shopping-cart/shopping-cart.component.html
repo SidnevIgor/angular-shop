@@ -2,6 +2,7 @@
 <div class="row col-10">
   <p>
     You have {{numberOfItems}} items in your cart
+    <button class="btn btn-light btn-sm" (click)="clearCart()" *ngIf="totalPrice>0">Clear shopping cart</button>
   </p>
   <table class="table">
     <thead>
@@ -15,7 +16,7 @@
     <tbody>
       <tr *ngFor="let productId of productIds">
         <ng-container *ngIf="cart$.items[productId].quantity > 0">
-        <td><div [style.backgroundImage]="'url(' + cart$.items[productId].product.imageUrl+')'" class="thumbnail"></div></td>  
+        <td><div [style.backgroundImage]="'url(' + cart$.items[productId].product.imageUrl+')'" class="thumbnail"></div></td>
         <td>{{ cart$.items[productId].product.title }}</td>
         <td><product-quantity [product]="cart$.items[productId].product" [shoppingCart]="cart$"></product-quantity></td>
         <td class="text-right">{{ cart$.items[productId].product.price * cart$.items[productId].quantity | currency:'USD':true}}</td>
@@ -31,5 +32,4 @@
       </tr>
     </tfoot>
   </table>
-  <button class="btn btn-danger btn-sm" (click)="clearCart()">Clear shopping cart</button>
 </div>
