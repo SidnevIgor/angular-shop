@@ -7,4 +7,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 export class OrderService {
 
   constructor(private db: AngularFireDatabase) { }
+
+  storeOrder(order) {
+    return this.db.list('/orders').push(order);
+  }
 }
