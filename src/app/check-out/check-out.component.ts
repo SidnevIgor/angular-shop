@@ -17,6 +17,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
   };
   cart: ShoppingCart;
   subscription: Subscription;
+  items: any[] = [];
 
   constructor(private shoppingCartServ: ShoppingCartService) {
 
@@ -25,6 +26,23 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     let cart$ = await this.shoppingCartServ.getCart();
     this.subscription = cart$.valueChanges().subscribe(cart => {
       this.cart = cart;
+      console.log('Cart: ',this.cart);
+      let productIds = Object.keys(this.cart.items);
+      console.log('Product IDs:', productIds);
+      for(let productId of productIds) {
+        if(this.cart.items[productId].quantity>0){
+          this.items.push({
+            product: {
+              title: this.cart.items[productId].product.title,
+              imageUrl: this.cart.items[productId].product.imageUrl,
+              price: this.cart.items[productId].product.price
+            },
+            quantity: this.cart.items[productId].quantity,
+            totalPrice: this.cart.items[productId].quantity*this.cart.items[productId].product.price
+          });
+        }
+      }
+      console.log(this.items);
     })
   }
   ngOnDestroy() {
@@ -34,7 +52,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     let order = {
       datePlaced: new Date().getTime,
       shipping: this.shipping,
-
+      items: this.items
     }
   }
 }

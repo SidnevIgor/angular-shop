@@ -51,7 +51,7 @@ export class ShoppingCartService {
         item$.update({ quantity: item.quantity - 1 });
       }
       else {
-        item$.set({product: product, quantity: 1});
+        item$.set({ product: product, quantity: 1 });
       }
     });
   }
