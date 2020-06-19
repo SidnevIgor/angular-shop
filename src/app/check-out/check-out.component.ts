@@ -4,6 +4,7 @@ import { ShoppingCart } from '../models/shopping-cart';
 import { Subscription } from 'rxjs';
 import { OrderService } from '../order.service';
 import { AuthService } from '../auth.service';
+import { Order } from '../models/order';
 
 @Component({
   selector: 'app-check-out',
@@ -34,20 +35,6 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     let cart$ = await this.shoppingCartServ.getCart();
     this.cartSubscription = cart$.valueChanges().subscribe(cart => {
       this.cart = cart;
-      let productIds = Object.keys(this.cart.items);
-      for(let productId of productIds) {
-        if(this.cart.items[productId].quantity>0){
-          this.items.push({
-            product: {
-              title: this.cart.items[productId].product.title,
-              imageUrl: this.cart.items[productId].product.imageUrl,
-              price: this.cart.items[productId].product.price
-            },
-            quantity: this.cart.items[productId].quantity,
-            totalPrice: this.cart.items[productId].quantity*this.cart.items[productId].product.price
-          });
-        }
-      }
       this.userSubscription = this.authServ.user$.subscribe(user => {
         this.userId = user.uid;
       })
@@ -58,12 +45,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     this.userSubscription.unsubscribe();
   }
   placeOrder() {
-    let order = {
-      userId: this.userId,
-      datePlaced: new Date().getTime(),
-      shipping: this.shipping,
-      items: this.items
-    }
+    let order = new Order(this.userId,this.shipping,this.cart);
     this.orderServ.storeOrder(order);
   }
 }
