@@ -51,7 +51,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
   }
   placeOrder() {
     let order = {
-      datePlaced: new Date().getTime,
+      datePlaced: new Date().getTime(),
       shipping: this.shipping,
       items: this.items
     }
