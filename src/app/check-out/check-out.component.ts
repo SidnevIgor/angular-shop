@@ -3,6 +3,7 @@ import { ShoppingCartService } from '../shopping-cart.service';
 import { ShoppingCart } from '../models/shopping-cart';
 import { Subscription } from 'rxjs';
 import { OrderService } from '../order.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-check-out',
@@ -17,19 +18,23 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     city: ''
   };
   cart: ShoppingCart;
-  subscription: Subscription;
+  cartSubscription: Subscription;
+  userSubscription: Subscription;
   items: any[] = [];
+  userId: string;
 
-  constructor(private shoppingCartServ: ShoppingCartService, private orderServ: OrderService) {
+  constructor(
+    private shoppingCartServ: ShoppingCartService,
+    private orderServ: OrderService,
+    private authServ: AuthService
+  ) {
 
   }
   async ngOnInit() {
     let cart$ = await this.shoppingCartServ.getCart();
-    this.subscription = cart$.valueChanges().subscribe(cart => {
+    this.cartSubscription = cart$.valueChanges().subscribe(cart => {
       this.cart = cart;
-      console.log('Cart: ',this.cart);
       let productIds = Object.keys(this.cart.items);
-      console.log('Product IDs:', productIds);
       for(let productId of productIds) {
         if(this.cart.items[productId].quantity>0){
           this.items.push({
@@ -43,14 +48,18 @@ export class CheckOutComponent implements OnInit, OnDestroy {
           });
         }
       }
-      console.log(this.items);
+      this.userSubscription = this.authServ.user$.subscribe(user => {
+        this.userId = user.uid;
+      })
     })
   }
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.cartSubscription.unsubscribe();
+    this.userSubscription.unsubscribe();
   }
   placeOrder() {
     let order = {
+      userId: this.userId,
       datePlaced: new Date().getTime(),
       shipping: this.shipping,
       items: this.items
