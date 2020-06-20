@@ -11,7 +11,7 @@ export class OrderService {
 
   async placeOrder(order) {
     let result = await this.db.list('/orders').push(order);
-    this.shoppingCartServ.clearCart();
+    //this.shoppingCartServ.clearCart();
     return result;
   }
 }
