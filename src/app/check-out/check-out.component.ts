@@ -47,16 +47,14 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     console.log('DESTROYED STARTED');
     this.cartSubscription.unsubscribe();
     this.userSubscription.unsubscribe();
-    this.clearCartSubscription.unsubscribe(); //this one does not work
-    console.log('DESTROYED FINISHED');
+    if(this.clearCartSubscription) {
+      this.clearCartSubscription.unsubscribe(); //this one does not work
+      console.log('DESTROYED FINISHED');
+    }
   }
   async placeOrder() {
     let order = new Order(this.userId,this.shipping,this.cart);
     let result = await this.orderServ.placeOrder(order);
-    this.shoppingCartServ.clearCart().then(subs => {
-      this.clearCartSubscription = subs;
-      console.log(this.clearCartSubscription);
-      this.router.navigate(['order-success',result.key]);
-    })
+    this.router.navigate(['order-success',result.key]);
   }
 }
