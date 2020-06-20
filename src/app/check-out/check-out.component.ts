@@ -44,10 +44,11 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     })
   }
   ngOnDestroy() {
-    console.log('DESTROYED');
+    console.log('DESTROYED STARTED');
     this.cartSubscription.unsubscribe();
     this.userSubscription.unsubscribe();
     this.clearCartSubscription.unsubscribe(); //this one does not work
+    console.log('DESTROYED FINISHED');
   }
   async placeOrder() {
     let order = new Order(this.userId,this.shipping,this.cart);
