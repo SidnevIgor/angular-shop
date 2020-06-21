@@ -7,11 +7,10 @@ import { ShoppingCartService } from './shopping-cart.service';
 })
 export class OrderService {
 
-  constructor(private db: AngularFireDatabase, private shoppingCartServ: ShoppingCartService) { }
+  constructor(private db: AngularFireDatabase) { }
 
   async placeOrder(order) {
     let result = await this.db.list('/orders').push(order);
-    //this.shoppingCartServ.clearCart();
     return result;
   }
 }

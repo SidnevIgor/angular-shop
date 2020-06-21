@@ -22,7 +22,6 @@ export class CheckOutComponent implements OnInit, OnDestroy {
   cart: ShoppingCart;
   cartSubscription: Subscription;
   userSubscription: Subscription;
-  clearCartSubscription: Subscription;
   items: any[] = [];
   userId: string;
 
@@ -47,19 +46,11 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     console.log('DESTROYED STARTED');
     this.cartSubscription.unsubscribe();
     this.userSubscription.unsubscribe();
-    if(this.clearCartSubscription) {
-      this.clearCartSubscription.unsubscribe(); //this one does not work
-      console.log('DESTROYED FINISHED');
-    }
   }
   async placeOrder() {
     let order = new Order(this.userId,this.shipping,this.cart);
     this.orderServ.placeOrder(order).then(result => {
-      this.shoppingCartServ.clearCart().then(subs => {
-        this.clearCartSubscription = subs;
-        console.log(this.clearCartSubscription);
-        this.router.navigate(['order-success',result.key]);
-      })
+      this.router.navigate(['order-success',result.key]);
     })
   }
 }
