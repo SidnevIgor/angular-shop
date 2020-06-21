@@ -1,1 +1,26 @@
-<p>shopping-cart-summary works!</p>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Order Summary</h5>
+    <p class="card-text">You have {{numberOfItems}} items in your order</p>
+    <tr class="list-group" *ngFor="let productId of productIds">
+      <ng-container *ngIf="cart.items[productId].quantity > 0">
+      <td class="list-group-item">
+          <div>
+            {{cart.items[productId].quantity}} x {{cart.items[productId].product.title}}
+          </div>
+          <div class="float-right">
+            {{cart.items[productId].product.price*cart.items[productId].quantity | currency:'USD':true}}
+          </div>
+      </td>
+      </ng-container>
+    </tr>
+    <tr class="list-group">
+      <td class="list-group-item font-weight-bold">
+        Total
+        <div class="float-right">
+          {{ totalPrice | currency:'USD':true }}
+        </div>
+      </td>
+    </tr>
+  </div>
+</div>

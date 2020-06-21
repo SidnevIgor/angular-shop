@@ -23,7 +23,6 @@ export class ShoppingCartComponent implements OnInit {
       this.cart$ = cart;
       let items: ShoppingCartItem[];
       items = (<ShoppingCart>cart).items;
-      console.log(items);
       this.numberOfItems = 0;
       this.totalPrice = 0;
       for(let productId in items) {
