@@ -17,7 +17,6 @@ export class MyOrdersComponent {
     this.authService.user$.subscribe(usr => {
       let user = usr;
       this.orders$ = this.orderService.getOrdersByUser(user.uid).valueChanges();
-      console.log(this.orders$);
     })
   }
 }
