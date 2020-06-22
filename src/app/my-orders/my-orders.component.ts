@@ -14,7 +14,10 @@ export class MyOrdersComponent {
   constructor(
     private authService: AuthService,
     private orderService: OrderService) {
-    let userId = this.authService.user$;
-    //this.orders$ = authService.user$.pipe(switchMap(u => orderService.getOrdersByUser(u.uid)));
+    this.authService.user$.subscribe(usr => {
+      let user = usr;
+      this.orders$ = this.orderService.getOrdersByUser(user.uid).valueChanges();
+      console.log(this.orders$);
+    })
   }
 }
