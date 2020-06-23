@@ -35,7 +35,8 @@ import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
 import { ShoppingCartService } from './shopping-cart.service';
 import { OrderService } from './order.service';
- 
+
+
 
 @NgModule({
   declarations: [
