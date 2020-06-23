@@ -5,3 +5,7 @@
   margin-bottom: 30px;
   height: 500px;
 }
+.btn-primary {
+  background-color: #006400;
+  border: 0;
+}
