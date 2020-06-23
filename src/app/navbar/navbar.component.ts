@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { switchMap, map } from 'rxjs/operators';
 
 import { AppUser } from '../models/app-user';
-import { AuthService } from '../auth.service';
-import { UserService } from '../user.service';
-import { ShoppingCartService } from '../shopping-cart.service';
+import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
+import { ShoppingCartService } from '../services/shopping-cart.service';
 import { ShoppingCart } from '../models/shopping-cart';
 import { ShoppingCartItem } from '../models/shopping-cart-item';
 
