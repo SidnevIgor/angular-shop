@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { switchMap, map } from 'rxjs/operators';
+import { faLeaf, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 import { AppUser } from '../models/app-user';
 import { AuthService } from '../services/auth.service';
@@ -16,6 +17,8 @@ import { ShoppingCartItem } from '../models/shopping-cart-item';
 export class NavbarComponent implements OnInit{
 
   numberOfItems: number;
+  faLeaf = faLeaf;
+  faShoppingCart = faShoppingCart;
   constructor(public auth: AuthService, private shoppingCartServ: ShoppingCartService) {
 
   }

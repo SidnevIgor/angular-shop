@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 //components
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
@@ -59,6 +60,7 @@ import { OrderService } from './services/order.service';
   imports: [
     BrowserModule,
     FormsModule,
+    FontAwesomeModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
