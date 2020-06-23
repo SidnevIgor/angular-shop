@@ -24,6 +24,7 @@ import { LoginComponent } from './login/login.component';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
@@ -34,7 +35,6 @@ import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
 import { ShoppingCartService } from './shopping-cart.service';
 import { OrderService } from './order.service';
-import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 
 
 @NgModule({
