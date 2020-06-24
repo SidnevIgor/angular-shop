@@ -6,7 +6,10 @@
 .form-control {
   padding: 25px 10px;
   font-size: 18px;
-  box-shadow: green;
+}
+.form-control:focus {
+  box-shadow: 0 0 5px #9ACD32;
+  border: 1px solid #9ACD32;
 }
 .googleIcon {
   padding-top: 10px;
