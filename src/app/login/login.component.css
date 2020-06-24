@@ -26,8 +26,9 @@
   border: 0;
   margin-top: 30px;
 }
-.btn-prim:focus {
+.btn-prim:hover {
   background-color: #ffc107;
+  transition: 1s;
 }
 /*Checkbox settings*/
 .checkbox {
