@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {  } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../services/auth.service';
+import { AppUser } from '../models/app-user';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +8,7 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-
+  appUser: AppUser;
   constructor(private auth: AuthService) { }
   login() {
     this.auth.login();
