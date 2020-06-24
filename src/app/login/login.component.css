@@ -1,0 +1,14 @@
+.form-signin {
+  max-width: 330px;
+  margin: 90px auto;
+  text-align: center;
+}
+.form-control {
+  padding: 25px 10px;
+  font-size: 18px;
+  box-shadow: green;
+}
+.googleIcon {
+  padding-top: 10px;
+  cursor: pointer;
+}
