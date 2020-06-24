@@ -8,7 +8,11 @@ import { AppUser } from '../models/app-user';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  appUser: AppUser;
+  appUser:AppUser = {
+    name: '',
+    email: '',
+    isAdmin: false
+  };
   constructor(private auth: AuthService) { }
   login() {
     this.auth.login();
