@@ -17,7 +17,11 @@ export class AuthService {
   loginFacebook() {
     let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
     localStorage.setItem('returnUrl',returnUrl);
-    this.auth.auth.signInWithRedirect(new firebase.auth.FacebookAuthProvider());
+    this.auth.auth.signInWithRedirect(new firebase.auth.FacebookAuthProvider())
+    .then((val)=>{
+      console.log(this.user$);
+      this.route.navigate(['products']);
+    });
   }
   loginGoogle() {
     let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
