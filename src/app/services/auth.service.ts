@@ -14,6 +14,11 @@ export class AuthService {
   constructor(private auth: AngularFireAuth, private route: ActivatedRoute, private db: AngularFireDatabase) {
     this.user$ = auth.authState;
   }
+  loginFacebook() {
+    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+    localStorage.setItem('returnUrl',returnUrl);
+    this.auth.auth.signInWithRedirect(new firebase.auth.FacebookAuthProvider());
+  }
   loginGoogle() {
     let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
     localStorage.setItem('returnUrl',returnUrl);

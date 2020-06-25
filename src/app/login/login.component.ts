@@ -21,4 +21,7 @@ export class LoginComponent {
   loginGoogle() {
     this.auth.loginGoogle();
   }
+  loginFacebook() {
+    this.auth.loginFacebook();
+  }
 }
