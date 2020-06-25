@@ -47,6 +47,8 @@ export class ProductsComponent implements OnInit {
     });
   }
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    if(this.subscription){
+      this.subscription.unsubscribe();
+    }
   }
 }

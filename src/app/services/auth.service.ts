@@ -3,7 +3,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +11,15 @@ import { ActivatedRoute } from '@angular/router';
 export class AuthService {
   user$: Observable<firebase.User>;
 
-  constructor(private auth: AngularFireAuth, private route: ActivatedRoute, private db: AngularFireDatabase) {
+  constructor(private auth: AngularFireAuth, private route: ActivatedRoute, private db: AngularFireDatabase, private router: Router) {
     this.user$ = auth.authState;
   }
   loginFacebook() {
     let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
     localStorage.setItem('returnUrl',returnUrl);
-    this.auth.auth.signInWithRedirect(new firebase.auth.FacebookAuthProvider())
+    this.auth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
     .then((val)=>{
-      console.log(this.user$);
-      this.route.navigate(['products']);
+      this.router.navigate(['products']);
     });
   }
   loginGoogle() {
