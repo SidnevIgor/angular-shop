@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AuthService {
   user$: Observable<firebase.User>;
+
   constructor(private auth: AngularFireAuth, private route: ActivatedRoute, private db: AngularFireDatabase) {
     this.user$ = auth.authState;
   }
@@ -21,8 +22,8 @@ export class AuthService {
   login(appUser) {
     let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
     localStorage.setItem('returnUrl',returnUrl);
-    //this.db.list('/users').push(appUser);
-    this.auth.auth.signInWithRedirect(new firebase.auth.OAuthProvider('/users'));
+    
+    this.auth.auth.createUserWithEmailAndPassword(appUser.email, appUser.password);
   }
   logout() {
     this.auth.auth.signOut();

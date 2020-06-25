@@ -18,6 +18,14 @@
         </div>
       </div>
 
+      <div class="form-group">
+        <label for="password" class="sr-only">E-mail</label>
+        <input #password="ngModel" name="password" [(ngModel)]="appUser.password" type="password" id="password" class="form-control" placeholder="Password" required>
+        <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
+          <div *ngIf="password.errors.required">Password is required.</div>
+        </div>
+      </div>
+
       <div class="checkbox mb-2 mt-2">
         <input type="checkbox" id="isAdmin" name="isAdmin" #isAdmin="ngModel" [(ngModel)]="appUser.isAdmin">
         <label for="isAdmin"><span>User is admin</span></label>

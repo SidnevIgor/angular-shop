@@ -11,7 +11,8 @@ export class LoginComponent {
   appUser:AppUser = {
     name: '',
     email: '',
-    isAdmin: true
+    isAdmin: true,
+    password: ''
   };
   constructor(private auth: AuthService) { }
   login() {
