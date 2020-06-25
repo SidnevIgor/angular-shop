@@ -32,9 +32,6 @@ export class NavbarComponent implements OnInit{
         this.numberOfItems+=items[productId].quantity;
       }
     })
-    this.auth.user$.subscribe(usr => {
-      console.log(usr);
-    });
   }
   logout() {
     this.auth.logout();

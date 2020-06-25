@@ -22,8 +22,11 @@ export class AuthService {
   login(appUser) {
     let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
     localStorage.setItem('returnUrl',returnUrl);
-    
-    this.auth.auth.createUserWithEmailAndPassword(appUser.email, appUser.password);
+    this.auth.auth.createUserWithEmailAndPassword(appUser.email, appUser.password).then(val=>{
+      return val.user.updateProfile({
+        displayName: appUser.name
+      })
+    });
   }
   logout() {
     this.auth.auth.signOut();

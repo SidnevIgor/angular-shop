@@ -16,7 +16,6 @@ export class LoginComponent {
   };
   constructor(private auth: AuthService) { }
   login() {
-    console.log(this.appUser);
     this.auth.login(this.appUser);
   }
   loginGoogle() {
