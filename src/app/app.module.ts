@@ -37,6 +37,7 @@ import { CategoryService } from './services/category.service';
 import { ProductService } from './services/product.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { OrderService } from './services/order.service';
+import { OrderCartComponent } from './order-cart/order-cart.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { OrderService } from './services/order.service';
     ProductFilterComponent,
     ProductCardComponent,
     ProductQuantityComponent,
-    ShoppingCartSummaryComponent
+    ShoppingCartSummaryComponent,
+    OrderCartComponent
   ],
   imports: [
     BrowserModule,
