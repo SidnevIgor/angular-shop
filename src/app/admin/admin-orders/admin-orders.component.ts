@@ -8,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-orders.component.css']
 })
 export class AdminOrdersComponent {
-  orders$;
+  orders;
 
   constructor(private orderService: OrderService) {
-    this.orders$ = orderService.getOrders().valueChanges();
+    orderService.getOrders().valueChanges()
+    .subscribe(ords => {
+      this.orders = ords;
+      orderService.getOrders().snapshotChanges()
+      .subscribe(ordsIds => {
+        for(let i=0; i< ordsIds.length; i++) {
+          this.orders[i].key = ordsIds[i].key;
+        }
+        console.log(this.orders);
+      })
+    })
   }
 }
