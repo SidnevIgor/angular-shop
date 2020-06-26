@@ -1,0 +1,11 @@
+.background {
+  text-align: center;
+}
+h2 {
+  display: inline-block;
+  margin-top: 10px;
+}
+svg {
+  color: green;
+  margin-top: 50px;
+}

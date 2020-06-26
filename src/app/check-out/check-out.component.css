@@ -2,3 +2,7 @@
   box-shadow: 0 0 5px #9ACD32;
   border: 1px solid #9ACD32;
 }
+.btn-primary {
+  background-color: #ffc107;
+  border: 0;
+}
