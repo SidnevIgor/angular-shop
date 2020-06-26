@@ -20,6 +20,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     city: ''
   };
   cart: ShoppingCart;
+  userSubscription: Subscription;
   cartSubscription: Subscription;
   userSubscription: Subscription;
   items: any[] = [];
@@ -34,6 +35,9 @@ export class CheckOutComponent implements OnInit, OnDestroy {
 
   }
   async ngOnInit() {
+    this.userSubscription = this.authServ.user$.subscribe(user => {
+      this.shipping.name = user.displayName;
+    })
     let cart$ = await this.shoppingCartServ.getCart();
     this.cartSubscription = cart$.valueChanges().subscribe(cart => {
       this.cart = cart;
@@ -44,6 +48,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     })
   }
   ngOnDestroy() {
+    this.userSubscription.unsubscribe();
     this.cartSubscription.unsubscribe();
     this.userSubscription.unsubscribe();
   }
