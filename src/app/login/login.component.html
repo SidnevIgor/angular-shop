@@ -1,37 +1,39 @@
-<form class="form-signin" #f="ngForm">
-      <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+<div class="background">
+  <form class="form-signin" #f="ngForm">
+        <fa-icon [icon]="faLeaf" class="leaf-icon"></fa-icon>
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
-      <div class="form-group">
-        <label for="name" class="sr-only">Name</label>
-        <input #name="ngModel" name="name" [(ngModel)]="appUser.name" type="text" id="name" class="form-control" placeholder="Name" required>
-        <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
-          <div *ngIf="name.errors.required">Name is required.</div>
+        <div class="form-group">
+          <label for="name" class="sr-only">Name</label>
+          <input #name="ngModel" name="name" [(ngModel)]="appUser.name" type="text" id="name" class="form-control" placeholder="Name" required>
+          <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+            <div *ngIf="name.errors.required">Name is required.</div>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="email" class="sr-only">E-mail</label>
-        <input #email="ngModel" name="email" [(ngModel)]="appUser.email" type="email" id="email" class="form-control" placeholder="E-mail" required>
-        <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
-          <div *ngIf="email.errors.required">Email is required.</div>
+        <div class="form-group">
+          <label for="email" class="sr-only">E-mail</label>
+          <input #email="ngModel" name="email" [(ngModel)]="appUser.email" type="email" id="email" class="form-control" placeholder="E-mail" required>
+          <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+            <div *ngIf="email.errors.required">Email is required.</div>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="password" class="sr-only">E-mail</label>
-        <input #password="ngModel" name="password" [(ngModel)]="appUser.password" type="password" id="password" class="form-control" placeholder="Password" required>
-        <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
-          <div *ngIf="password.errors.required">Password is required.</div>
+        <div class="form-group">
+          <label for="password" class="sr-only">E-mail</label>
+          <input #password="ngModel" name="password" [(ngModel)]="appUser.password" type="password" id="password" class="form-control" placeholder="Password" required>
+          <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
+            <div *ngIf="password.errors.required">Password is required.</div>
+          </div>
         </div>
-      </div>
 
-      <div class="checkbox mb-2 mt-2">
-        <input type="checkbox" id="isAdmin" name="isAdmin" #isAdmin="ngModel" [(ngModel)]="appUser.isAdmin">
-        <label for="isAdmin"><span>User is admin</span></label>
-      </div>
+        <div class="checkbox mb-2 mt-2">
+          <input type="checkbox" id="isAdmin" name="isAdmin" #isAdmin="ngModel" [(ngModel)]="appUser.isAdmin">
+          <label for="isAdmin"><span>User is admin</span></label>
+        </div>
 
-      <button class="btn btn-lg btn-prim btn-block" type="submit" [disabled]="!f.valid" (click)="login()">Sign in</button>
-      <img class="googleIcon" src="https://img.icons8.com/color/28/000000/google-logo.png" (click)="loginGoogle()"/>
-      <img class="googleIcon" src="https://img.icons8.com/fluent/28/000000/facebook-new.png" (click)="loginFacebook()"/>
-</form>
+        <button class="btn btn-lg btn-prim btn-block" type="submit" [disabled]="!f.valid" (click)="login()">Sign in</button>
+        <img class="googleIcon" src="https://img.icons8.com/color/28/000000/google-logo.png" (click)="loginGoogle()"/>
+        <img class="googleIcon" src="https://img.icons8.com/fluent/28/000000/facebook-new.png" (click)="loginFacebook()"/>
+  </form>
+</div>

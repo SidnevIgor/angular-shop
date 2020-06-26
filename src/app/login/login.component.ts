@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { AppUser } from '../models/app-user';
+import { faLeaf } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,10 @@ export class LoginComponent {
     isAdmin: true,
     password: ''
   };
+  faLeaf = faLeaf;
+
   constructor(private auth: AuthService) { }
+  
   login() {
     this.auth.login(this.appUser);
   }

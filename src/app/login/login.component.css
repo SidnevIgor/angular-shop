@@ -30,6 +30,12 @@
   background-color: #ffc107;
   transition: 1s;
 }
+.leaf-icon {
+  font-size: 70px;
+  margin-bottom: 15px;
+  color: green;
+  display: inline-block;
+}
 /*Checkbox settings*/
 .checkbox {
     width: 100%;
