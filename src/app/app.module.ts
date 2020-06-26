@@ -28,6 +28,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { OrderCartComponent } from './admin/order-cart/order-cart.component';
 //services
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
@@ -37,7 +38,6 @@ import { CategoryService } from './services/category.service';
 import { ProductService } from './services/product.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { OrderService } from './services/order.service';
-import { OrderCartComponent } from './order-cart/order-cart.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +79,7 @@ import { OrderCartComponent } from './order-cart/order-cart.component';
       {path:'admin/products/new',component:ProductFormComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
       {path:'admin/products/:id',component:ProductFormComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
       {path:'admin/products',component:AdminProductsComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
+      {path:'admin/orders/:id',component: OrderCartComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
       {path:'admin/orders',component: AdminOrdersComponent, canActivate: [AuthGuardService, AdminAuthGuardService]}
     ]),
     NgbModule,
