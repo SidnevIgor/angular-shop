@@ -9,3 +9,12 @@ svg {
   color: green;
   margin-top: 50px;
 }
+a {
+  display: block;
+  color: black;
+}
+a:hover {
+  color: green;
+  text-decoration: none;
+  transition: 0.5s;
+}
