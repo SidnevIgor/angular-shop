@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { OrderService } from '../services/order.service';
 import { AuthService } from '../services/auth.service';
 import { Order } from '../models/order';
+import { Shipping } from '../models/shipping';
 
 @Component({
   selector: 'app-check-out',
@@ -13,7 +14,7 @@ import { Order } from '../models/order';
   styleUrls: ['./check-out.component.css']
 })
 export class CheckOutComponent implements OnInit, OnDestroy {
-  shipping = {
+  shipping:Shipping = {
     name: '',
     addressLine1: '',
     addressLine2: '',

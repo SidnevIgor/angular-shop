@@ -19,7 +19,6 @@ export class AdminOrdersComponent {
         for(let i=0; i< ordsIds.length; i++) {
           this.orders[i].key = ordsIds[i].key;
         }
-        console.log(this.orders);
       })
     })
   }

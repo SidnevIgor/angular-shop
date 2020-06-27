@@ -1,6 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { ShoppingCartService } from './shopping-cart.service';
+import { Order } from '../models/order';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class OrderService {
   getOrdersByUser(userId: string) {
     return this.db.list('/orders', ref => ref.orderByChild('userId').equalTo(userId));
   }
-  getOrder(key) {
+  getOrder(key):AngularFireList<Order> {
     return this.db.list('/orders/'+key);
   }
 }
