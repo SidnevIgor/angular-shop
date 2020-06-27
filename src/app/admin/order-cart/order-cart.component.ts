@@ -12,13 +12,18 @@ import { Shipping } from '../../models/shipping';
 })
 export class OrderCartComponent implements OnInit {
 
+  orderId: string;
   items: Order;
-  shipping: any;
+  shipping: any = {
+    name: '',
+    city: '',
+    addressLine1: '',
+    addressLine2: ''
+  };
 
   constructor(private router:Router, private route: ActivatedRoute, private ordServ: OrderService) {
-    let id = this.route.snapshot.paramMap.get('id');
-    this.ordServ.getOrder(id).valueChanges().subscribe((ord) => {
-      console.log('Cart: ', ord);
+    this.orderId = this.route.snapshot.paramMap.get('id');
+    this.ordServ.getOrder(this.orderId).valueChanges().subscribe((ord) => {
       this.items = ord[1];
       this.shipping = ord[2];
       console.log('Items: ', this.items);
@@ -30,4 +35,7 @@ export class OrderCartComponent implements OnInit {
 
   }
 
+  save(form) {
+
+  }
 }
