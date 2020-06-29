@@ -23,7 +23,6 @@ export class OrderCartComponent implements OnInit {
     addressLine1: '',
     addressLine2: ''
   };
-  totalPrice: number;
 
   constructor(private router:Router,
               private route: ActivatedRoute,
@@ -34,22 +33,23 @@ export class OrderCartComponent implements OnInit {
     this.ordServ.getOrder(this.orderId).valueChanges().subscribe((ord) => {
       this.items = ord[1];
       this.shipping = ord[2];
-      this.totalPrice = 0;
-      for(let i=0; i< this.items.length; i++) {
-        if(this.items[i].quantity>0) {
-          console.log('CHECK', this.items[i]);
-          this.totalPrice += this.items[i].quantity*this.items[i].product.price;
-        }
-      }
     })
   }
   ngOnInit(): void {
 
   }
   save(form) {
-    console.log(this.items);
     this.db.object('/orders/'+this.orderId+'/shipping').update(this.shipping);
     this.db.object('/orders/'+this.orderId+'/items').update(this.items);
+  }
+  remove() {
+    if(!confirm('Are you sure you want to delete the product')) {
+      return;
+    }
+    else {
+      this.db.object('/orders/'+this.orderId).remove();
+      this.router.navigate(['/admin/orders']);
+    }
   }
   removeFromCart(item) {
     item.quantity--;
