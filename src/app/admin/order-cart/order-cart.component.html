@@ -61,3 +61,44 @@
     </div>
   </div>
 </div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Product</th>
+      <th style="width: 230px" class="text-center">Quantity</th>
+      <th style="width: 200px" class="text-right">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items">
+      <ng-container *ngIf="item.quantity > 0">
+      <td><div [style.backgroundImage]="'url(' + item.product.imageUrl+')'" class="thumbnail"></div></td>
+      <td>{{ item.title }}</td>
+      <td>
+        <div class="row no-gutters">
+          <div class="col-2">
+            <button (click)="removeFromCart(item)" class="btn btn-primary btn-block">-</button>
+          </div>
+          <div class="col text-center">
+            {{ item.quantity }} in cart
+          </div>
+          <div class="col-2">
+            <button class="btn btn-primary btn-block" (click)="addToCart(item)">+</button>
+          </div>
+        </div>
+      </td>
+      <td class="text-right">{{ item.product.price*item.quantity | currency:'USD':true}}</td>
+      </ng-container>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th class="text-right">{{ totalPrice | currency:'USD':true}}</th>
+    </tr>
+  </tfoot>
+</table>
