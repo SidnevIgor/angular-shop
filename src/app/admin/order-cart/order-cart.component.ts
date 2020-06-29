@@ -15,7 +15,6 @@ import { AngularFireDatabase } from 'angularfire2/database';
 export class OrderCartComponent implements OnInit {
 
   orderId: string;
-  cart$;
   items: any;
   shipping: any = {
     name: '',
