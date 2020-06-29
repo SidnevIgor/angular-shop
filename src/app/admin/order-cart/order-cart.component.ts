@@ -15,14 +15,14 @@ export class OrderCartComponent implements OnInit {
 
   orderId: string;
   cart$;
-  items: Order;
+  items: any;
   shipping: any = {
     name: '',
     city: '',
     addressLine1: '',
     addressLine2: ''
   };
-  totalPrice = 0;
+  totalPrice: number = 0;
 
   constructor(private router:Router,
               private route: ActivatedRoute,
@@ -31,27 +31,25 @@ export class OrderCartComponent implements OnInit {
     this.ordServ.getOrder(this.orderId).valueChanges().subscribe((ord) => {
       this.items = ord[1];
       this.shipping = ord[2];
+      for(let i=0; i< this.items.length; i++) {
+        if(this.items[i].quantity>0) {
+          this.totalPrice += this.items[i].quantity*this.items[i].product.price;
+        }
+      }
       console.log('Items: ', this.items);
       console.log('Shipping details: ', this.shipping);
-      this.shoppingCartServ.getCart().then(cart => {
-        cart.valueChanges().subscribe(ct => {
-          this.cart$ = ct;
-        })
-      })
     })
   }
-
   ngOnInit(): void {
 
   }
-
   save(form) {
 
   }
   removeFromCart(item) {
-
+    item.quantity--;
   }
   addToCart(item) {
-
+    item.quantity++;
   }
 }
