@@ -21,6 +21,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
   constructor(private router:Router, private route: ActivatedRoute, private categoryServ: CategoryService, private productServ: ProductService) {
     this.categories$ = categoryServ.getListOfCategories();
+    
     this.id = this.route.snapshot.paramMap.get('id');
     if(this.id) {
       this.productServ.get(this.id).subscribe(p => {
