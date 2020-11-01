@@ -5,7 +5,7 @@ export class Order {
   items: any[] = [];
   datePlaced: number;
 
-  constructor(public userId: string, public shipping:Shipping,shoppingCart: ShoppingCart) {
+  constructor(public userId: string, public shipping:Shipping, shoppingCart: ShoppingCart) {
     this.datePlaced = new Date().getTime();
     let productIds = Object.keys(shoppingCart.items);
     for(let productId of productIds) {
