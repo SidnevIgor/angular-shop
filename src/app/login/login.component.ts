@@ -12,13 +12,13 @@ export class LoginComponent {
   appUser:AppUser = {
     name: '',
     email: '',
-    isAdmin: true,
+    isAdmin: false,
     password: ''
   };
   faLeaf = faLeaf;
 
   constructor(private auth: AuthService) { }
-  
+
   login() {
     this.auth.login(this.appUser);
   }
