@@ -8,14 +8,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-orders.component.css']
 })
 export class MyOrdersComponent {
-  orders$;
+  orders;
 
   constructor(
     private authService: AuthService,
     private orderService: OrderService) {
     this.authService.user$.subscribe(usr => {
       let user = usr;
-      this.orders$ = this.orderService.getOrdersByUser(user.uid).valueChanges();
+      this.orderService.getOrdersByUser(user.uid).valueChanges()
+      .subscribe(ords => {
+        this.orders = ords;
+        orderService.getOrders().snapshotChanges()
+        .subscribe(ordsIds => {
+          for(let i=0; i< ordsIds.length; i++) {
+            this.orders[i].key = ordsIds[i].key;
+          }
+        });
+      });
     })
   }
 }
