@@ -73,6 +73,7 @@ import { OrderService } from './services/order.service';
       {path:'login',component:LoginComponent},
 
       {path:'check-out',component:CheckOutComponent, canActivate: [AuthGuardService]},
+      {path:'my/orders/:id',component:OrderCartComponent, canActivate: [AuthGuardService]},
       {path:'my/orders',component:MyOrdersComponent, canActivate: [AuthGuardService]},
       {path:'order-success/:id',component:OrderSuccessComponent, canActivate: [AuthGuardService]},
 
