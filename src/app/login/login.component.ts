@@ -28,4 +28,7 @@ export class LoginComponent {
   loginFacebook() {
     this.auth.loginFacebook();
   }
+  register() {
+    this.auth.register(this.appUser);
+  }
 }

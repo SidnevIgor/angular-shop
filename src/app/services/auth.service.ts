@@ -35,17 +35,21 @@ export class AuthService {
       return val.user.updateProfile({
         displayName: appUser.name
       })
+      .catch((er) => {
+        throw new Error(er);
+      })
+    });
+  }
+  register(appUser) {
+    this.auth.auth.createUserWithEmailAndPassword(appUser.email, appUser.password)
+    .then(val => {
+      return val.user.updateProfile({
+        displayName: appUser.name
+      })
     })
-    .catch((error) => {
-        this.auth.auth.createUserWithEmailAndPassword(appUser.email, appUser.password)
-        .then(val => {
-          return val.user.updateProfile({
-            displayName: appUser.name
-          })
-        }).catch((er) => {
-          console.log('The uncaught error', er);
-      });
-    })
+    .catch((er) => {
+      throw new Error(er);
+    });
   }
   logout() {
     this.auth.auth.signOut();
