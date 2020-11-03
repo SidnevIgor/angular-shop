@@ -20,9 +20,10 @@
 
         <div class="form-group">
           <label for="password" class="sr-only">E-mail</label>
-          <input #password="ngModel" name="password" [(ngModel)]="appUser.password" type="password" id="password" class="form-control" placeholder="Password" required>
+          <input #password="ngModel" name="password" [(ngModel)]="appUser.password" type="password" id="password" class="form-control" placeholder="Password" minlength=6 required>
           <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
             <div *ngIf="password.errors.required">Password is required.</div>
+            <div *ngIf="password.errors.minlength">Password should contain 6 characters.</div>
           </div>
         </div>
 
