@@ -35,9 +35,10 @@ export class AuthService {
       return val.user.updateProfile({
         displayName: appUser.name
       })
-    }).catch((error) => {
+    })
+    .catch((error) => {
         this.auth.auth.createUserWithEmailAndPassword(appUser.email, appUser.password)
-        .then(val=>{
+        .then(val => {
           return val.user.updateProfile({
             displayName: appUser.name
           })
