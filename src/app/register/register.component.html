@@ -1,6 +1,6 @@
 <form class="form-signin" #f="ngForm">
         <fa-icon [icon]="faLeaf" class="leaf-icon"></fa-icon>
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <h1 class="h3 mb-3 font-weight-normal">Please register</h1>
 
         <div class="form-group">
           <label for="name" class="sr-only">Name</label>
@@ -32,7 +32,7 @@
           <label for="isAdmin"><span>User is admin</span></label>
         </div>
 
-        <button class="btn btn-lg btn-prim btn-block" type="submit" [disabled]="!f.valid" (click)="login()">Sign in</button>
+        <button class="btn btn-lg btn-prim btn-block" type="submit" [disabled]="!f.valid" (click)="login()">Register</button>
         <img class="googleIcon" src="https://img.icons8.com/color/28/000000/google-logo.png" (click)="loginGoogle()"/>
         <img class="googleIcon" src="https://img.icons8.com/fluent/28/000000/facebook-new.png" (click)="loginFacebook()"/>
   </form>
