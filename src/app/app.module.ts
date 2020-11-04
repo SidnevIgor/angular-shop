@@ -23,6 +23,7 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { LoginComponent } from './login/login.component';
+/*import { RegisterComponent } from './register/register.component';*/
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
@@ -38,7 +39,6 @@ import { CategoryService } from './services/category.service';
 import { ProductService } from './services/product.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { OrderService } from './services/order.service';
-import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +59,7 @@ import { RegisterComponent } from './register/register.component';
     ProductQuantityComponent,
     ShoppingCartSummaryComponent,
     OrderCartComponent,
-    RegisterComponent
+    /*RegisterComponent*/
   ],
   imports: [
     BrowserModule,
