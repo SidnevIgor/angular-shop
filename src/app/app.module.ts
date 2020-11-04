@@ -23,7 +23,7 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { LoginComponent } from './login/login.component';
-/*import { RegisterComponent } from './register/register.component';*/
+import { RegisterComponent } from './register/register.component';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
@@ -59,7 +59,7 @@ import { OrderService } from './services/order.service';
     ProductQuantityComponent,
     ShoppingCartSummaryComponent,
     OrderCartComponent,
-    /*RegisterComponent*/
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
