@@ -22,7 +22,6 @@ export class LoginComponent {
 
   login() {
     this.auth.login(this.appUser).catch((error) => {
-      console.log(error);
       if(error.code === "auth/wrong-password") {
         Swal.fire('Error', 'The password is wrong', 'error');
       }

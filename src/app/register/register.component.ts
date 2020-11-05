@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { AppUser } from '../models/app-user';
 import { faLeaf } from '@fortawesome/free-solid-svg-icons';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -26,6 +27,11 @@ export class RegisterComponent {
     this.auth.loginFacebook();
   }
   register() {
-    this.auth.register(this.appUser);
+    this.auth.register(this.appUser).catch((error) => {
+      console.log(error);
+      if(error.code === "auth/email-already-in-use") {
+        Swal.fire('Error', 'The email is already used', 'error');
+      }
+    });
   }
 }
