@@ -30,15 +30,7 @@ export class AuthService {
   login(appUser) {
     let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
     localStorage.setItem('returnUrl',returnUrl);
-    this.auth.auth.signInWithEmailAndPassword(appUser.email, appUser.password)
-    .then(val => {
-      return val.user.updateProfile({
-        displayName: appUser.name
-      })
-      .catch((er) => {
-        throw new Error(er);
-      })
-    });
+    this.auth.auth.signInWithEmailAndPassword(appUser.email, appUser.password);
   }
   register(appUser) {
     this.auth.auth.createUserWithEmailAndPassword(appUser.email, appUser.password)

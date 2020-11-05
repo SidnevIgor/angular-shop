@@ -3,14 +3,6 @@
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
         <div class="form-group">
-          <label for="name" class="sr-only">Name</label>
-          <input #name="ngModel" name="name" [(ngModel)]="appUser.name" type="text" id="name" class="form-control" placeholder="Name" required>
-          <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
-            <div *ngIf="name.errors.required">Name is required.</div>
-          </div>
-        </div>
-
-        <div class="form-group">
           <label for="email" class="sr-only">E-mail</label>
           <input #email="ngModel" name="email" [(ngModel)]="appUser.email" type="email" id="email" class="form-control" placeholder="E-mail" required>
           <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
