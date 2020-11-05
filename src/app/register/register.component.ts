@@ -19,9 +19,6 @@ export class RegisterComponent {
 
   constructor(private auth: AuthService) { }
 
-  login() {
-    this.auth.login(this.appUser);
-  }
   loginGoogle() {
     this.auth.loginGoogle();
   }
