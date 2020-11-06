@@ -49,7 +49,11 @@ export class OrderCartComponent implements OnInit {
     }
     else {
       this.db.object('/orders/'+this.orderId).remove();
-      this.router.navigate(['/admin/orders']);
+      this.router.navigate(['/admin/orders']).then((redirSuccess) => {
+        if(!redirSuccess) {
+          this.router.navigate(['/my/orders']);
+        }
+      });
     }
   }
   removeFromCart(item) {
