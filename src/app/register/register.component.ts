@@ -28,7 +28,6 @@ export class RegisterComponent {
   }
   register() {
     this.auth.register(this.appUser).catch((error) => {
-      console.log(error);
       if(error.code === "auth/email-already-in-use") {
         Swal.fire('Error', 'The email is already used', 'error');
       }

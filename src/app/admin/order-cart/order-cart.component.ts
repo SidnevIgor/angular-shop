@@ -6,6 +6,7 @@ import { Order } from '../../models/order';
 import { Shipping } from '../../models/shipping';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
 import { AngularFireDatabase } from 'angularfire2/database';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'order-cart',
@@ -40,6 +41,7 @@ export class OrderCartComponent implements OnInit {
   save(form) {
     this.db.object('/orders/'+this.orderId+'/shipping').update(this.shipping);
     this.db.object('/orders/'+this.orderId+'/items').update(this.items);
+    Swal.fire('', 'Changes successfully saved', 'success');
   }
   remove() {
     if(!confirm('Are you sure you want to delete the product')) {
