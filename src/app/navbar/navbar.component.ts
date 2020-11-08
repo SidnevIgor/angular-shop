@@ -16,7 +16,7 @@ import { ShoppingCartItem } from '../models/shopping-cart-item';
 })
 export class NavbarComponent implements OnInit{
 
-  numberOfItems: number;
+  numberOfItems: number = 0;
   faLeaf = faLeaf;
   faShoppingCart = faShoppingCart;
   constructor(public auth: AuthService, private shoppingCartServ: ShoppingCartService) {
@@ -26,10 +26,12 @@ export class NavbarComponent implements OnInit{
     let cart$ = await this.shoppingCartServ.getCart();
     let items: ShoppingCartItem[];
     cart$.valueChanges().subscribe(cart => {
-      items = (<ShoppingCart>cart).items;
-      this.numberOfItems = 0;
-      for(let productId in items) {
-        this.numberOfItems+=items[productId].quantity;
+      console.log('Cart in header: ', cart);
+      if(cart) {
+        items = (<ShoppingCart>cart).items;
+        for(let productId in items) {
+          this.numberOfItems+=items[productId].quantity;
+        }
       }
     })
   }

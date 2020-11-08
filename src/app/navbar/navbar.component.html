@@ -13,7 +13,7 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/shopping-cart">
             <fa-icon [icon]="faShoppingCart"></fa-icon>
-            <span class="badge badge-warning badge-pill">{{numberOfItems}}</span>
+            <span class="badge badge-warning badge-pill">{{numberOfItems || 0}}</span>
           </a>
         </li>
       </ul>
