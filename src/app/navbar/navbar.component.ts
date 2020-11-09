@@ -28,11 +28,14 @@ export class NavbarComponent implements OnInit{
     cart$.valueChanges().subscribe(cart => {
       if(cart) {
         items = (<ShoppingCart>cart).items;
+        this.numberOfItems = 0;
         for(let productId in items) {
-          this.numberOfItems+=items[productId].quantity;
+          if(items[productId].quantity > 0) {
+            ++this.numberOfItems;
+          }
         }
       }
-    }) 
+    })
   }
   logout() {
     this.auth.logout();
