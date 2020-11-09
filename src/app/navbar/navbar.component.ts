@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit{
           this.numberOfItems+=items[productId].quantity;
         }
       }
-    })
+    }) 
   }
   logout() {
     this.auth.logout();
