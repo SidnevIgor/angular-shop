@@ -26,7 +26,6 @@ export class NavbarComponent implements OnInit{
     let cart$ = await this.shoppingCartServ.getCart();
     let items: ShoppingCartItem[];
     cart$.valueChanges().subscribe(cart => {
-      console.log('Cart in header: ', cart);
       if(cart) {
         items = (<ShoppingCart>cart).items;
         for(let productId in items) {

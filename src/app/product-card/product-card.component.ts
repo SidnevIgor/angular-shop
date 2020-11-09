@@ -20,7 +20,8 @@ export class ProductCardComponent {
     this.shoppingCartServ.removeFromCart(product);
   }
   getQuantity() {
-    if(!this.shoppingCart) return 0;
+    console.log('Checking shopping cart: ', this.shoppingCart);
+    if(!this.shoppingCart || this.shoppingCart.items == null) return 0;
     else {
       let item = this.shoppingCart.items[this.product.key];
       return item? item.quantity: 0;
