@@ -20,7 +20,6 @@ export class ProductCardComponent {
     this.shoppingCartServ.removeFromCart(product);
   }
   getQuantity() {
-    console.log('Checking shopping cart: ', this.shoppingCart);
     if(!this.shoppingCart || this.shoppingCart.items == null) return 0;
     else {
       let item = this.shoppingCart.items[this.product.key];
