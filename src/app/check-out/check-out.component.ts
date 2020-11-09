@@ -51,7 +51,9 @@ export class CheckOutComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.userLoginSubscription.unsubscribe();
     this.cartSubscription.unsubscribe();
-    this.userSubscription.unsubscribe();
+    if(this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
   }
   async placeOrder() {
     let order = new Order(this.userId,this.shipping,this.cart);
