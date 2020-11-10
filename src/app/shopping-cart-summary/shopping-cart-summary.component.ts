@@ -20,7 +20,6 @@ export class ShoppingCartSummaryComponent implements OnInit {
     (await (await this.shoppingCartServ.getCart()).valueChanges()).subscribe(cart => {
       this.cart = cart;
       this.productIds = Object.keys(this.cart.items);
-      console.log(this.productIds);
       let items: ShoppingCartItem[];
       items = (<ShoppingCart>this.cart).items;
       for(let productId in items) {
@@ -29,7 +28,6 @@ export class ShoppingCartSummaryComponent implements OnInit {
           this.totalPrice+=items[productId].product.price * items[productId].quantity;
         }
       }
-      console.log('Quantity', this.totalPrice);
     });
   }
 }

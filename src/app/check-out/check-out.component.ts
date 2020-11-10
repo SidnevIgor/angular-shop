@@ -42,7 +42,6 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     let cart$ = await this.shoppingCartServ.getCart();
     this.cartSubscription = cart$.valueChanges().subscribe(cart => {
       this.cart = cart;
-      console.log('First cart:', this.cart);
       this.userSubscription = this.authServ.user$.subscribe(user => {
         this.userId = user.uid;
       })
